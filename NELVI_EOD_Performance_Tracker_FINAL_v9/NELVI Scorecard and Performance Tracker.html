@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>VEDHA EXIM × NELVI — Team EOD Performance Tracker</title>
+<meta name="theme-color" content="#0e4026">
+<style>
+:root{--g:#0e4026;--g2:#1b6a3b;--g3:#2f8a4c;--lime:#78ad32;--gold:#b98a2b;--gold2:#ead59a;--cream:#f7f4ea;--paper:#fffdf8;--ink:#15241b;--muted:#68736b;--line:#dfe7dc;--soft:#eef5eb;--red:#b7353d;--blue:#3e6fa8;--shadow:0 16px 45px rgba(15,57,32,.09);--r:18px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(circle at 8% 0%,#e8f1df 0,#f7f4ea 34%,#edf4ea 68%,#f8f6ef 100%);min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+.login{min-height:100vh;display:grid;place-items:center;padding:22px}.login-card{width:min(480px,100%);background:rgba(255,253,248,.96);border:1px solid #e0e6dc;border-radius:28px;padding:34px;box-shadow:0 30px 90px rgba(18,55,32,.14);text-align:center}.login-logo{width:132px;height:132px;object-fit:cover;border-radius:50%;border:2px solid var(--gold2);background:#fff;margin-bottom:12px}.eyebrow{font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}.login-card h1{font-size:27px;margin:9px 0 8px}.login-card p{font-size:12px;color:var(--muted);line-height:1.65;margin:0 auto 22px;max-width:380px}.field{text-align:left;display:grid;gap:7px}.field label{font-size:11px;font-weight:800;color:#5f6b62}.input,.select,.textarea{width:100%;border:1px solid #d5dfd2;background:#fffdf8;border-radius:12px;padding:11px 12px;outline:0;color:var(--ink)}.input:focus,.select:focus,.textarea:focus{border-color:#8eb66e;box-shadow:0 0 0 3px #8eb66e1c}.textarea{min-height:260px;resize:vertical}.btn{border:1px solid var(--line);background:var(--paper);color:var(--g);border-radius:11px;padding:10px 13px;font-size:12px;font-weight:850;transition:.15s;box-shadow:0 5px 15px rgba(15,57,32,.05)}.btn:hover{transform:translateY(-1px)}.btn.primary{background:var(--g);color:#fff;border-color:var(--g)}.btn.gold{background:#fff7df;color:#785817;border-color:#ead69c}.btn.danger{background:#fff0f1;color:var(--red);border-color:#efc8cb}.login-btn{width:100%;margin-top:10px;padding:13px}.login-status{font-size:11px;margin-top:10px;color:var(--red);min-height:17px}
+.app{display:grid;grid-template-columns:245px 1fr;min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,#0b351f,#14512d 62%,#0b2f1c);color:#fff;padding:18px 14px;display:flex;flex-direction:column;z-index:20}.brand{display:flex;align-items:center;gap:10px;padding:5px 7px 20px}.brand img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid #d9c47e;background:#fff}.brand strong{font-size:12px;display:block}.brand span{font-size:9px;color:#cfe3d1}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:#dbe9dc;text-align:left;padding:11px 12px;border-radius:11px;font-weight:750;font-size:12px}.nav button:hover,.nav button.active{background:#ffffff14;color:#fff}.side-bottom{margin-top:auto;display:grid;gap:8px}.sync-note{font-size:9px;color:#c9dfca;line-height:1.5;padding:10px;border:1px solid #ffffff18;border-radius:12px;background:#ffffff08}.main{width:100%;max-width:1700px;margin:auto;padding:22px 26px 55px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:18px}.title{font-size:27px;font-weight:900;line-height:1.1;margin:3px 0}.subtitle{font-size:11px;color:var(--muted);margin-top:5px}.actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.status{font-size:10px;font-weight:850;color:#28613b;background:#eef6eb;border:1px solid #d3e4cf;padding:9px 11px;border-radius:11px}.view{animation:fade .18s ease}@keyframes fade{from{opacity:.35;transform:translateY(3px)}to{opacity:1;transform:none}}
+.hero{border-radius:24px;padding:23px;background:linear-gradient(135deg,#0e4026,#217143);color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;right:-130px;top:-170px;border:48px solid #ffffff0c}.hero h2{margin:4px 0 6px;font-size:24px}.hero p{font-size:11px;line-height:1.65;color:#dbe9db;max-width:850px;margin:0}.hero-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:18px}.hero-kpi{padding:12px;border:1px solid #ffffff17;border-radius:14px;background:#ffffff0c}.hero-kpi b{display:block;font-size:23px}.hero-kpi span{font-size:9px;color:#cfe3cf}
+.section{margin-top:19px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:10px}.section h2{font-size:17px;margin:0}.desc{font-size:10px;color:var(--muted);line-height:1.5}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.grid2{display:grid;grid-template-columns:1.35fr .65fr;gap:11px}.card{background:rgba(255,253,248,.96);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}.metric .label{font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.metric .value{font-size:25px;font-weight:900;color:var(--g);margin-top:5px}.metric .sub{font-size:9px;color:var(--muted);margin-top:4px}.chart{height:285px;min-width:0}.chart svg{width:100%;height:100%;display:block}.chart-label{font-size:9px;fill:#788178}.chart-grid{stroke:#e6ece3;stroke-width:1}.chart-line{fill:none;stroke:var(--g2);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.chart-area{fill:url(#areaFill)}.chart-dot{fill:var(--g2);stroke:#fff;stroke-width:2}.bar-row{display:grid;grid-template-columns:105px 1fr 48px;align-items:center;gap:9px;margin:12px 0}.bar-name{font-size:10px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bar{height:9px;border-radius:99px;background:#e8eee5;overflow:hidden}.bar span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--g2),var(--lime))}.bar-val{text-align:right;font-size:10px;font-weight:900;color:var(--g)}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px}.table{width:100%;border-collapse:collapse;min-width:700px}.table th,.table td{padding:11px 12px;border-bottom:1px solid #edf1eb;font-size:10px;text-align:left}.table th{background:#f4f7f1;color:#657065;text-transform:uppercase;letter-spacing:.06em;font-size:9px}.table tr:last-child td{border-bottom:0}.person{display:flex;align-items:center;gap:8px}.avatar{width:35px;height:35px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:#e9f1e5;border:1px solid #d3dfcf;color:var(--g);font-weight:900;flex:0 0 auto}.avatar img{width:100%;height:100%;object-fit:cover}.rank{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:#edf4e9;color:var(--g);font-weight:900}.tag{display:inline-flex;align-items:center;padding:4px 7px;border-radius:99px;background:#edf5e9;color:#356044;font-size:8px;font-weight:850}.tag.gold{background:#fff4d7;color:#7c5b1c}.tag.gray{background:#eef0ed;color:#687068}.tag.blue{background:#eef4fb;color:#456b96}.filters{display:flex;gap:7px;flex-wrap:wrap}.filters .input,.filters .select{width:auto;min-width:150px}.people{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.profile-card{cursor:pointer;position:relative;overflow:hidden}.profile-card:hover{border-color:#b9cbb2;transform:translateY(-2px)}.profile-top{display:flex;align-items:center;gap:11px}.profile-card .avatar{width:64px;height:64px;font-size:17px}.profile-card h3{font-size:14px;margin:0 0 3px}.role{font-size:9px;color:var(--muted)}.profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:13px}.pstat{background:#f5f7f2;border-radius:10px;padding:8px}.pstat b{display:block;font-size:13px;color:var(--g)}.pstat span{font-size:8px;color:var(--muted)}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}.day{min-height:112px;padding:10px;border:1px solid var(--line);background:var(--paper);border-radius:13px;cursor:pointer}.day:hover{border-color:#b7cbb0;box-shadow:0 8px 22px #17361f12}.day-head{display:flex;justify-content:space-between;gap:5px}.day-date{font-size:10px;font-weight:900}.day-count{font-size:8px;color:var(--muted)}.day-name{font-size:9px;font-weight:850;color:var(--g);margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.day-mail{font-size:18px;font-weight:900;color:var(--g);margin-top:10px}.day-mail span{font-size:8px;color:var(--muted);font-weight:700}.day-extra{font-size:8px;color:var(--muted);margin-top:5px;line-height:1.35}.heat{height:8px;border-radius:99px;background:#e7ede4;margin-top:8px;overflow:hidden}.heat span{display:block;height:100%;background:linear-gradient(90deg,var(--lime),var(--g2))}
+.progress{height:9px;background:#e7ede4;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--g2),var(--lime));border-radius:99px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:11px}.grid4>*,.grid2>*,.two-col>*,.profile-grid>*,.card{min-width:0}.contrib-layout{display:grid;grid-template-columns:1fr;gap:14px;align-items:center}.donut-legend{grid-template-columns:repeat(2,minmax(0,1fr))}.donut-panel{display:grid;place-items:center;min-width:0}.donut-svg{width:min(230px,100%);height:auto;display:block}.donut-center{font-weight:900;fill:var(--g);font-size:20px}.donut-sub{font-size:8px;fill:var(--muted)}.donut-legend{display:grid;gap:9px}.legend-row{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:8px;align-items:center;font-size:10px}.legend-dot{width:10px;height:10px;border-radius:50%}.legend-name{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.legend-pct{font-weight:900;color:var(--g)}.legend-value{font-size:8px;color:var(--muted);margin-left:4px}.performance-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:13px}.performance-summary .pstat{min-width:0}.work-chart{min-height:285px}.work-bar-row{display:grid;grid-template-columns:minmax(90px,1.1fr) minmax(100px,2fr) 58px;align-items:center;gap:9px;margin:13px 0}.work-bar-row .bar-name{min-width:0}.work-bar-row .bar{height:11px}.work-bar-row .bar span{transition:width .25s ease}.work-bar-row .bar-val{font-size:10px}.work-note{margin-top:11px}.list{display:grid;gap:7px}.list-item{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #edf1eb;font-size:10px}.list-item:last-child{border-bottom:0}.list-item b{color:var(--g)}.eod-list{display:grid;gap:8px}.eod-item{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;cursor:pointer}.eod-item:hover{border-color:#b7cbb0}.eod-top{display:flex;justify-content:space-between;gap:8px;align-items:center}.eod-date{font-size:10px;font-weight:900}.eod-name{font-size:9px;color:var(--g);font-weight:850}.eod-snippet{font-size:9px;color:#5f6861;line-height:1.5;margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.empty{padding:30px;text-align:center;border:1px dashed #ccd7ca;border-radius:14px;color:var(--muted);font-size:11px}.notice{padding:10px 12px;background:#fff8df;border:1px solid #ead69c;border-radius:12px;color:#73571b;font-size:9px;line-height:1.5}
+.modal{position:fixed;inset:0;background:#0d241799;backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:14px;z-index:100}.modal.show{display:flex}.modal-card{width:min(900px,100%);max-height:93vh;overflow:auto;background:var(--paper);border:1px solid #e0e7dd;border-radius:22px;padding:19px;box-shadow:0 30px 100px #07170d55}.modal-card.small{width:min(510px,100%)}.modal-head{display:flex;justify-content:space-between;gap:12px;align-items:start}.modal-head h2{font-size:21px;margin:4px 0}.close{border:1px solid var(--line);background:#fff;border-radius:10px;width:35px;height:35px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.form-grid .full{grid-column:1/-1}.modal-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:14px}.profile-hero{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;background:linear-gradient(135deg,#f0f6ec,#fff8e6);border:1px solid #dce7d7;border-radius:17px;padding:14px}.profile-hero .avatar{width:82px;height:82px;font-size:20px}.photo-upload-btn{white-space:nowrap;border:1px solid #c8d8c5;background:#fff;font-weight:850}.profile-hero h3{margin:0;font-size:21px}.profile-hero p{margin:4px 0;color:var(--muted);font-size:10px}.profile-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:11px;margin-top:11px}.donut-wrap{width:150px;height:150px;position:relative;margin:7px auto}.donut{width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--g2) 0deg,var(--g2) 0deg,#e8eee5 0deg);display:grid;place-items:center}.donut:after{content:"";width:98px;height:98px;background:var(--paper);border-radius:50%}.donut-label{position:absolute;inset:0;display:grid;place-items:center;font-size:22px;font-weight:900;color:var(--g)}.eod-full{white-space:pre-wrap;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;font-size:10px;line-height:1.65;color:#39423b;margin-top:10px}.chip-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.pinbox{display:grid;gap:9px;margin-top:12px}.spinner{width:15px;height:15px;border:2px solid #ffffff55;border-top-color:#fff;border-radius:50%;display:inline-block;animation:spin .7s linear infinite;vertical-align:-3px;margin-right:5px}@keyframes spin{to{transform:rotate(360deg)}}.busy{opacity:.72;pointer-events:none}.zoom{position:fixed;right:14px;bottom:14px;display:flex;gap:4px;background:var(--paper);border:1px solid var(--line);padding:5px;border-radius:12px;box-shadow:var(--shadow);z-index:80}.zoom button{border:0;background:#f0f4ee;color:var(--g);border-radius:8px;width:31px;height:30px;font-weight:900}
+@media(max-width:1100px){.app{grid-template-columns:1fr}.sidebar{position:sticky;height:auto;padding:9px 12px;display:flex;flex-direction:row;align-items:center;gap:10px}.brand{padding:0}.brand img{width:44px;height:44px}.nav{display:flex;overflow:auto;gap:4px}.nav button{white-space:nowrap}.side-bottom{display:none}.main{padding:17px}.people,.grid4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.donut-legend{grid-template-columns:1fr}.contrib-layout{grid-template-columns:1fr}.donut-svg{width:min(210px,75vw)}.performance-summary{grid-template-columns:1fr 1fr}.work-bar-row{grid-template-columns:82px minmax(80px,1fr) 50px;gap:7px}.main{overflow-x:hidden}.table-wrap{max-width:100%}.eod-top,.profile-top{min-width:0}.eod-top>*{min-width:0}.login-card{padding:25px}.login-logo{width:110px;height:110px}.topbar,.section-head{align-items:flex-start;flex-direction:column}.title{font-size:23px}.hero-kpis{grid-template-columns:1fr 1fr}.grid4,.grid2,.two-col,.profile-grid{grid-template-columns:1fr}.people{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(2,1fr)}.day{min-height:105px}.filters{width:100%}.filters .input,.filters .select{width:100%}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}.profile-hero{grid-template-columns:auto 1fr}.profile-hero .actions{grid-column:1/-1}.chart{height:245px}.modal{padding:7px}.modal-card{padding:14px}.hero h2{font-size:21px}}
+
+/* Password visibility controls */
+.secret-wrap{position:relative;width:100%}.secret-wrap .input{padding-right:44px}.secret-toggle{position:absolute;right:7px;top:50%;transform:translateY(-50%);width:34px;height:34px;border:0;background:transparent;color:#68736b;border-radius:9px;display:grid;place-items:center;font-size:16px;line-height:1}.secret-toggle:hover{background:#eef4ea;color:var(--g)}.secret-toggle:focus-visible{outline:2px solid #8eb66e;outline-offset:1px}.secret-toggle .eye-off{display:none}.secret-toggle.is-visible .eye-on{display:none}.secret-toggle.is-visible .eye-off{display:inline}
+</style>
+</head>
+<body>
+<div id="loginScreen" class="login">
+  <div class="login-card">
+    <img class="login-logo" src="logo.png" alt="VEDHA EXIM × NELVI">
+    <div class="eyebrow">VEDHA EXIM × NELVI</div>
+    <h1>Team EOD Performance Tracker</h1>
+    <p>One transparent team portal. Everyone can view team performance. Each member gets write access only to their own EOD after verifying their personal PIN.</p>
+    <div class="field">
+      <label>Common Team Access Code</label>
+      <input id="teamCode" class="input" type="password" autocomplete="off" placeholder="Enter team access code">
+    </div>
+    <button id="loginBtn" class="btn primary login-btn">Enter Portal →</button>
+    <div id="loginMsg" class="login-status"></div>
+  </div>
+</div>
+
+<div id="app" class="app hidden">
+<aside class="sidebar">
+  <div class="brand"><img src="logo.png" alt=""><div><strong>VEDHA EXIM × NELVI</strong><span>Team EOD Performance</span></div></div>
+  <nav class="nav">
+    <button data-view="dashboard" class="active">⌂ Dashboard</button>
+    <button data-view="team">👥 Team Profiles</button>
+    <button data-view="mail">✉ Mail Performance</button>
+    <button data-view="work">🧩 Work Performance</button>
+    <button data-view="eod">📅 EOD Calendar</button>
+    <button data-view="insights">◈ Insights</button>
+  </nav>
+  <div class="side-bottom">
+    <div id="syncNote" class="sync-note">Connecting to shared database…</div>
+    <button id="adminBtn" class="btn gold">🔐 Admin Access</button>
+    <button id="logoutBtn" class="btn">Exit Portal</button>
+  </div>
+</aside>
+
+<main class="main">
+<header class="topbar">
+  <div><div class="eyebrow">TEAM OPERATIONS · LIVE VIEW</div><div class="title">EOD Performance Tracker</div><div class="subtitle">Daily EOD → structured data → monthly analytics → transparent team performance.</div></div>
+  <div class="actions"><span id="userBadge" class="status">View Mode</span><button id="refreshBtn" class="btn">↻ Refresh</button><button id="myProfileBtn" class="btn gold hidden">My Profile</button></div>
+</header>
+
+<section id="dashboard" class="view">
+  <div class="hero">
+    <div class="eyebrow" style="color:#e4cf8e">VEDHA EXIM × NELVI</div>
+    <h2>📊 Team Performance, without the WhatsApp overload.</h2>
+    <p>Capture the original EOD once, keep the complete message, and turn daily reporting into clear monthly performance. New-mail output powers the mail competition; other work is tracked separately so every role remains visible and fair.</p>
+    <div class="hero-kpis">
+      <div class="hero-kpi"><b id="heroMail">0</b><span>New mails · selected month</span></div>
+      <div class="hero-kpi"><b id="heroContrib">0</b><span>Mail contributors</span></div>
+      <div class="hero-kpi"><b id="heroEod">0</b><span>EOD reports</span></div>
+      <div class="hero-kpi"><b id="heroLeader">—</b><span>Mail leader</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div><h2>Monthly Executive Snapshot</h2><div class="desc">Fast management view for the selected month.</div></div><input id="dashMonth" class="input" type="month" style="max-width:180px"></div>
+    <div class="grid4">
+      <div class="card metric"><div class="label">Team new mails</div><div class="value" id="kpiMails">0</div><div class="sub">Follow-up / reminder excluded</div></div>
+      <div class="card metric"><div class="label">Top contributor</div><div class="value" id="kpiLeader">—</div><div class="sub" id="kpiLeaderSub">No data</div></div>
+      <div class="card metric"><div class="label">Best team day</div><div class="value" id="kpiBest">0</div><div class="sub" id="kpiBestSub">—</div></div>
+      <div class="card metric"><div class="label">EOD coverage</div><div class="value" id="kpiCoverage">0%</div><div class="sub">Active profiles with a report</div></div>
+    </div>
+  </div>
+
+  <div class="section grid2">
+    <div class="card"><div class="section-head"><div><h2>New Mail Output Trend</h2><div class="desc">Daily team new-mail output.</div></div></div><div id="teamTrend" class="chart"></div></div>
+    <div class="card"><div class="section-head"><div><h2>Contribution Mix</h2><div class="desc">Share of monthly new-mail output.</div></div></div><div id="contributionBars"></div></div>
+  </div>
+
+  <div class="section grid2">
+    <div class="card"><div class="section-head"><div><h2>🏆 Current Mail Leaders</h2><div class="desc">Only contributors with new-mail output are ranked.</div></div><button class="btn" onclick="showView('mail')">Full view →</button></div><div id="dashLeaderboard"></div></div>
+    <div class="card"><div class="section-head"><div><h2>🧩 Role Work Activity</h2><div class="desc">Non-mail work is highlighted separately; it does not enter the mail ranking.</div></div><button class="btn" onclick="showView('work')">Explore →</button></div><div id="dashWork"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div><h2>Recent EOD Activity</h2><div class="desc">Original messages remain available for transparency.</div></div><button class="btn" onclick="showView('eod')">Open calendar →</button></div>
+    <div id="recentEod" class="eod-list"></div>
+  </div>
+</section>
+
+<section id="team" class="view hidden">
+  <div class="card"><div class="section-head"><div><h2>👥 Team Profiles</h2><div class="desc">Everyone can view every profile. A member can manage EOD only after entering the PIN issued to that profile.</div></div><div class="actions"><input id="teamSearch" class="input" placeholder="Search team…"><button id="adminAddPerson" class="btn primary hidden">＋ Add Member</button></div></div><div id="peopleGrid" class="people"></div></div>
+</section>
+
+<section id="mail" class="view hidden">
+  <div class="card"><div class="section-head"><div><h2>✉ Mail Performance</h2><div class="desc">Competition KPI = new mails only. Follow-up/reminder mails are shown separately and excluded.</div></div><input id="mailMonth" class="input" type="month" style="max-width:180px"></div><div class="grid4" style="margin-bottom:12px"><div class="card metric"><div class="label">Total new mails</div><div class="value" id="mailTotal">0</div></div><div class="card metric"><div class="label">Leader</div><div class="value" id="mailLeader">—</div></div><div class="card metric"><div class="label">Average / active day</div><div class="value" id="mailAvg">0</div></div><div class="card metric"><div class="label">Best single day</div><div class="value" id="mailBest">0</div></div></div><div class="card"><div id="mailTable"></div></div></div>
+</section>
+
+<section id="work" class="view hidden">
+  <div class="card"><div class="section-head"><div><h2>🧩 Work Performance</h2><div class="desc">Role-based work is tracked separately from the mail competition. No non-mail activity is added to the mail ranking.</div></div><input id="workMonth" class="input" type="month" style="max-width:180px"></div>
+    <div class="grid4" style="margin-bottom:12px">
+      <div class="card metric"><div class="label">Total work items</div><div class="value" id="workTotal">0</div><div class="sub">Documented non-mail activity</div></div>
+      <div class="card metric"><div class="label">Active work contributors</div><div class="value" id="workContributors">0</div><div class="sub">Profiles with documented work</div></div>
+      <div class="card metric"><div class="label">Top work activity</div><div class="value" id="workLeader">—</div><div class="sub" id="workLeaderSub">No data</div></div>
+      <div class="card metric"><div class="label">Avg / contributor</div><div class="value" id="workAvg">0</div><div class="sub">Work items across active contributors</div></div>
+    </div>
+  </div>
+  <div class="section two-col">
+    <div class="card"><div class="section-head"><div><h2>Work Contribution Mix</h2><div class="desc">Share of documented non-mail work items.</div></div></div><div id="workContributionMix"></div></div>
+    <div class="card"><div class="section-head"><div><h2>Work Performance by Person</h2><div class="desc">100% = highest documented work-item volume in the selected month.</div></div></div><div id="workPerformanceBars" class="work-chart"></div></div>
+  </div>
+  <div class="section two-col">
+    <div class="card"><div class="section-head"><div><h2>Daily Work Activity</h2><div class="desc">Number of documented non-mail work items by day.</div></div></div><div id="workTrend" class="chart"></div></div>
+    <div class="card"><div class="section-head"><div><h2>Work Performance Levels</h2><div class="desc">Individual activity percentage and monthly contribution.</div></div></div><div id="workTable"></div></div>
+  </div>
+</section>
+
+<section id="eod" class="view hidden">
+  <div class="card"><div class="section-head"><div><h2>📅 EOD Calendar & Archive</h2><div class="desc">Every submitted EOD is preserved as the original message. Click any day to open the complete report.</div></div><div class="filters"><input id="eodSearch" class="input" placeholder="Search name / task / date…"><input id="eodMonth" class="input" type="month"></div></div><div id="eodCalendar" class="calendar"></div></div>
+</section>
+
+<section id="insights" class="view hidden">
+  <div class="card"><div class="section-head"><div><h2>◈ Management Insights</h2><div class="desc">A presentation-ready view of output, consistency, contribution and documented work.</div></div><div class="actions"><input id="insightMonth" class="input" type="month" style="max-width:180px"><button class="btn" onclick="exportMonth()">⇩ Export CSV</button></div></div><div id="insightsContent"></div></div>
+</section>
+</main></div>
+
+<!-- Profile -->
+<div id="profileModal" class="modal"><div class="modal-card">
+  <div class="modal-head"><div><div class="eyebrow">EMPLOYEE PROFILE</div><h2 id="profileTitle">Profile</h2></div><button class="close" onclick="closeModal('profileModal')">✕</button></div>
+  <div id="profileContent"></div>
+</div></div>
+
+<!-- EOD -->
+<div id="eodModal" class="modal"><div class="modal-card">
+  <div class="modal-head"><div><div class="eyebrow">ORIGINAL EOD REPORT</div><h2 id="eodTitle">EOD</h2></div><button class="close" onclick="closeModal('eodModal')">✕</button></div>
+  <div id="eodContent"></div>
+</div></div>
+
+<!-- Entry -->
+<div id="entryModal" class="modal"><div class="modal-card">
+  <div class="modal-head"><div><div class="eyebrow">EOD SUBMISSION</div><h2>Submit Daily EOD</h2></div><button class="close" onclick="closeModal('entryModal')">✕</button></div>
+  <div class="form-grid">
+    <div class="field"><label>Date</label><input id="entryDate" class="input" type="date"></div>
+    <div class="field"><label>Profile</label><input id="entryName" class="input" readonly></div>
+    <div class="field full"><label>Paste the complete WhatsApp EOD message exactly as sent</label><textarea id="entryText" class="textarea" placeholder="Paste the original EOD message…"></textarea></div>
+  </div>
+  <div id="entryPreview" class="notice" style="margin-top:10px">The system will detect new-mail output, follow-up/reminder mail, other work and tomorrow's plan. Only new mail enters the mail leaderboard.</div>
+  <div class="modal-actions"><button class="btn" onclick="closeModal('entryModal')">Cancel</button><button id="saveEntry" class="btn primary">Save EOD</button></div>
+</div></div>
+
+<!-- PIN -->
+<div id="pinModal" class="modal"><div class="modal-card small">
+  <div class="modal-head"><div><div class="eyebrow">PROFILE SECURITY</div><h2>Unlock EOD Controls</h2></div><button class="close" onclick="closeModal('pinModal')">✕</button></div>
+  <p class="desc">Enter the personal PIN issued for this profile. Correct PIN enables Add/Delete for this profile only.</p>
+  <div class="pinbox"><label class="field"><span class="desc">Personal PIN</span><input id="memberPin" class="input" type="password" inputmode="numeric" autocomplete="off" placeholder="Enter your PIN"></label></div>
+  <div id="pinMsg" class="login-status"></div>
+  <div class="modal-actions"><button class="btn" onclick="closeModal('pinModal')">Cancel</button><button id="verifyPin" class="btn primary">Verify PIN</button></div>
+</div></div>
+
+<!-- Person -->
+<div id="personModal" class="modal"><div class="modal-card small">
+  <div class="modal-head"><div><div class="eyebrow">ADMIN · TEAM MEMBER</div><h2 id="personModalTitle">Add Team Member</h2></div><button class="close" onclick="closeModal('personModal')">✕</button></div>
+  <div class="form-grid">
+    <div class="field full"><label>Name</label><input id="personName" class="input"></div>
+    <div class="field full"><label>Position / Role</label><input id="personRole" class="input" placeholder="e.g. Sales Partner, Video Editor"></div>
+    <div class="field full"><label>Profile Photo</label><input id="personPhotoFile" class="input" type="file" accept="image/*"><div id="personPhotoHint" class="desc" style="margin-top:5px">Choose a photo from this device. It will be resized/compressed and saved to the shared profile.</div></div>
+    <div class="field full"><label>Personal PIN</label><input id="personPin" class="input" type="password" inputmode="numeric" placeholder="PIN issued to this member"></div>
+  </div>
+  <div class="notice" style="margin-top:10px">The PIN is stored as a hash in the database. Share the original PIN privately with the member; it is not displayed back to them.</div>
+  <div class="modal-actions"><button id="deletePersonBtn" class="btn danger hidden" type="button">Delete Member</button><span style="flex:1"></span><button class="btn" onclick="closeModal('personModal')">Cancel</button><button id="savePerson" class="btn primary">Save Member</button></div>
+</div></div>
+
+<input id="profilePhotoFile" type="file" accept="image/*" style="display:none">
+
+<!-- Admin -->
+<div id="adminModal" class="modal"><div class="modal-card small">
+  <div class="modal-head"><div><div class="eyebrow">ADMIN ACCESS</div><h2>Administrator</h2></div><button class="close" onclick="closeModal('adminModal')">✕</button></div>
+  <p class="desc">Admin can manage team members and all EOD records.</p>
+  <div class="field" style="margin-top:12px"><label>Admin Key</label><input id="adminKeyInput" class="input" type="password" autocomplete="off"></div>
+  <div id="adminMsg" class="login-status"></div>
+  <div class="modal-actions"><button class="btn" onclick="closeModal('adminModal')">Cancel</button><button id="adminLoginBtn" class="btn primary">Unlock Admin</button></div>
+</div></div>
+
+<!-- Delete -->
+<div id="confirmModal" class="modal"><div class="modal-card small">
+  <div class="eyebrow">CONFIRM ACTION</div><h2>Delete this EOD?</h2><p id="confirmText" class="desc"></p>
+  <div class="modal-actions"><button class="btn" onclick="closeModal('confirmModal')">Cancel</button><button id="confirmBtn" class="btn danger">Yes, Delete</button></div>
+</div></div>
+
+<div class="zoom"><button id="zoomOut">−</button><button id="zoomReset">100%</button><button id="zoomIn">＋</button></div>
+
+<script>
+const CONFIG={API_URL:'https://script.google.com/macros/s/AKfycbyaTjIrEvo9W0jRYJvVaIbfgt9tO7rjqolHHgLZcQaNA-gvvRfrQhNbBgLDe-i-bqC7/exec'};
+const $=id=>document.getElementById(id);
+const state={records:[],people:[],month:new Date().toISOString().slice(0,7),view:'dashboard',user:null,admin:false,teamCode:''};
+let syncTimer=null, pendingProfile=null, charts={};
+
+function apiReady(){return !!CONFIG.API_URL&&!CONFIG.API_URL.includes('PASTE_GOOGLE')}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function attr(s){return esc(s).replace(/`/g,'&#96;')}
+function initials(n){return (n||'?').trim().split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()}
+function fmtDate(s){if(!s)return'—';const d=new Date(s+'T00:00:00');return isNaN(d)?s:d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}
+function monthLabel(m){return new Date(m+'-01T00:00:00').toLocaleDateString('en-IN',{month:'long',year:'numeric'})}
+function personByName(n){return state.people.find(p=>String(p.name).toLowerCase()===String(n).toLowerCase())}
+function monthRecords(m){return state.records.filter(r=>String(r.date||'').slice(0,7)===m)}
+function activePeople(){return state.people.filter(p=>p.active!==false)}
+function avg(a){return a.length?a.reduce((x,y)=>x+y,0)/a.length:0}
+
+async function api(action,payload={},opts={}){
+  if(!apiReady())throw new Error('Apps Script URL is not configured.');
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),opts.timeout||18000);
+  try{
+    const res=await fetch(CONFIG.API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action,...payload}),cache:'no-store',signal:controller.signal,keepalive:!!opts.keepalive});
+    const data=await res.json();if(!data.ok)throw new Error(data.error||'Request failed');return data;
+  }catch(e){if(e.name==='AbortError')throw new Error('Request timed out. Please try again.');throw e}
+  finally{clearTimeout(timeout)}
+}
+
+async function fetchAll(){
+  if(!apiReady())return;
+  try{const res=await fetch(CONFIG.API_URL,{cache:'no-store'});const d=await res.json();if(!d.ok)throw new Error(d.error||'GET failed');
+    state.records=d.records||[];state.people=d.people||[];cacheState();$('syncNote').textContent='● Connected · '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});render();
+  }catch(e){loadCache();$('syncNote').textContent='⚠ Cached view · reconnecting';}
+}
+function cacheState(){try{localStorage.setItem('nelviEodCache',JSON.stringify({records:state.records,people:state.people,at:Date.now()}))}catch(e){}}
+function loadCache(){try{const d=JSON.parse(localStorage.getItem('nelviEodCache')||'null');if(d){state.records=d.records||[];state.people=d.people||[];render()}}catch(e){}}
+
+let warmTimer=null;
+function warmBackend(){
+  if(!apiReady())return;
+  fetch(CONFIG.API_URL+'?warm=1',{method:'GET',cache:'no-store',keepalive:true}).catch(()=>{});
+  if(warmTimer)clearInterval(warmTimer);
+  warmTimer=setInterval(()=>fetch(CONFIG.API_URL+'?warm=1',{method:'GET',cache:'no-store',keepalive:true}).catch(()=>{}),240000);
+}
+warmBackend();
+
+function parseDateText(s){const d=new Date(s);return isNaN(d)?'':d.toISOString().slice(0,10)}
+function parseEOD(raw,dateOverride){
+  const lines=raw.replace(/\r/g,'').split('\n');
+  let date=dateOverride||'',name='',today=false,tomorrow=false,todayLines=[],tomorrowLines=[];
+  const dm=raw.match(/(?:Date\s*:\s*|📅\s*(?:Date\s*:\s*)?)([A-Za-z]{3,9}\s+\d{1,2},\s*\d{4}|\d{1,2}[\/-]\d{1,2}[\/-]\d{4})/i);
+  if(!date&&dm)date=parseDateText(dm[1]);
+  const nm=raw.match(/(?:Name\s*:\s*|👤\s*(?:Name\s*:\s*)?)([^\n]+)/i);if(nm)name=nm[1].replace(/[*_]/g,'').trim();
+  if(!date)date=new Date().toISOString().slice(0,10);
+  for(const rawLine of lines){
+    const l=rawLine.trim();if(!l)continue;
+    if(/TODAY.?S WORK/i.test(l)){today=true;tomorrow=false;continue}
+    if(/TOMORROW.?S PLAN/i.test(l)){tomorrow=true;today=false;continue}
+    if(/^[-—_=]{4,}$/.test(l)||/^📅/.test(l)||/^👤/.test(l)||/^Date\s*:/i.test(l))continue;
+    const cleaned=l.replace(/^\d+[.)]\s*/,'').replace(/^[*_]+|[*_]+$/g,'').trim();
+    if(today)todayLines.push(cleaned);else if(tomorrow)tomorrowLines.push(cleaned);
+  }
+  let newMails=0,followupMails=0;const mailItems=[];
+  for(const line of lines){
+    const l=line.trim();
+    if(!l)continue;
+    const follow=/follow.?up|reminder|remainder/i.test(l);
+    // Explicit new-mail/delivery phrases. The first number is treated as output, never the target after "/".
+    let m=l.match(/(?:total\s+)?mail\s+delivery\s+sent\s*(?:~|:|=|-)?\s*(\d+)\s*(?:\/\s*(\d+))?/i);
+    if(!m)m=l.match(/(?:new\s+)?mails?\s+sent\s*(?:~|:|=|-)?\s*(\d+)\s*(?:\/\s*(\d+))?/i);
+    if(m){
+      const n=Number(m[1]||0);if(follow)followupMails+=n;else{newMails+=n;mailItems.push({count:n,target:m[2]?Number(m[2]):null,label:l})}
+    }else{
+      // "Mail: 15" only when the line is explicitly a mail output line; don't treat "14-day reminder" as 14 mails.
+      const generic=l.match(/^(?:✉️?\s*)?(?:mail|mails)\s*(?:count|sent|delivery)?\s*(?:~|:|=|-)\s*(\d+)\b/i);
+      if(generic&&/sent|count|delivery/i.test(l)&&!follow){newMails+=Number(generic[1]);mailItems.push({count:Number(generic[1]),target:null,label:l})}
+    }
+  }
+  const extra=todayLines.filter(x=>!/(?:total\s+)?mail\s+delivery\s+sent|mails?\s+sent\s*(?:~|:|=|-)|^(?:mail|mails)\s*(?:count|sent|delivery)?\s*(?:~|:|=|-)|^not\s+valid\b|^\(?all\s+\d+\s+buyers?.*verified/i.test(x));
+  const meaningful=extra.filter(x=>!/^none|nil|no work$/i.test(x));
+  return {id:'e_'+date+'_'+name.toLowerCase().replace(/[^a-z0-9]+/g,'_')+'_'+Math.random().toString(36).slice(2,7),date,name,text:raw,newMails,followupMails,extra,day:todayLines,tomorrow:tomorrowLines,mailItems,source:'remote'};
+}
+
+function mailStats(m){
+  const rs=monthRecords(m),map={};
+  rs.forEach(r=>{if(r.name)map[r.name]=(map[r.name]||0)+Number(r.newMails||0)});
+  const rows=Object.entries(map).filter(([,v])=>v>0).map(([name,mails])=>({name,mails})).sort((a,b)=>b.mails-a.mails||a.name.localeCompare(b.name));
+  const total=rows.reduce((a,b)=>a+b.mails,0);
+  rows.forEach((r,i)=>{r.rank=i+1;r.pct=total?r.mails/total*100:0});
+  return{rows,total};
+}
+function roleStats(m){
+  const rs=monthRecords(m),people=activePeople(),units={};
+  people.forEach(p=>units[p.name]=0);
+  rs.forEach(r=>{units[r.name]=(units[r.name]||0)+(r.extra||[]).length});
+  const max=Math.max(0,...Object.values(units));
+  const rows=people.map(p=>{const items=units[p.name]||0;const eods=rs.filter(r=>r.name.toLowerCase()===p.name.toLowerCase());const days=eods.filter(r=>(r.extra||[]).length>0).length;return{name:p.name,role:p.role||'Team Member',units,items,days,pct:max?items/max*100:0,eods:eods.length}});
+  return rows.sort((a,b)=>b.items-a.items||a.name.localeCompare(b.name));
+}
+function profileStats(name,m){
+  const rs=monthRecords(m).filter(r=>r.name.toLowerCase()===name.toLowerCase());
+  const mails=rs.reduce((a,r)=>a+Number(r.newMails||0),0);
+  const follow=rs.reduce((a,r)=>a+Number(r.followupMails||0),0);
+  const units=rs.reduce((a,r)=>a+(r.extra||[]).length,0);
+  const activeDays=rs.length,workDays=rs.filter(r=>(r.extra||[]).length>0).length;
+  const best=Math.max(0,...rs.map(r=>Number(r.newMails||0)));
+  const maxRole=Math.max(0,...roleStats(m).map(x=>x.items));
+  return{rs,mails,follow,units,activeDays,workDays,best,rolePct:maxRole?units/maxRole*100:0};
+}
+function teamDayMap(m){const rs=monthRecords(m),map={};rs.forEach(r=>map[r.date]=(map[r.date]||0)+Number(r.newMails||0));return map}
+function monthDays(m){const start=new Date(m+'-01T00:00:00'),year=start.getFullYear(),month=start.getMonth(),out=[];for(let i=1;i<=new Date(year,month+1,0).getDate();i++)out.push(`${year}-${String(month+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`);return out}
+
+function svgLine(values,labels){
+  const W=800,H=285,p={l:38,r:14,t:15,b:35},iw=W-p.l-p.r,ih=H-p.t-p.b,max=Math.max(1,...values),step=values.length>1?iw/(values.length-1):iw;
+  const pts=values.map((v,i)=>[p.l+i*step,p.t+ih-(v/max)*ih]);let line=pts.map((q,i)=>(i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1)).join(' ');
+  let area=line+` L ${pts.at(-1)[0]} ${p.t+ih} L ${pts[0][0]} ${p.t+ih} Z`;
+  let grid='';for(let i=0;i<5;i++){const y=p.t+ih*i/4;const val=Math.round(max*(1-i/4));grid+=`<line class="chart-grid" x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}"/><text class="chart-label" x="4" y="${y+3}">${val}</text>`}
+  const shown=labels.map((x,i)=>({x,i})).filter(o=>labels.length<=10||o.i===0||o.i===labels.length-1||o.i%Math.ceil(labels.length/6)===0);
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Daily new mail trend"><defs><linearGradient id="areaFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#2f8a4c" stop-opacity=".20"/><stop offset="100%" stop-color="#2f8a4c" stop-opacity="0"/></linearGradient></defs>${grid}<path class="chart-area" d="${area}"/><path class="chart-line" d="${line}"/>${pts.map((q,i)=>`<circle class="chart-dot" cx="${q[0]}" cy="${q[1]}" r="3.5"><title>${labels[i]} · ${values[i]}</title></circle>`).join('')}${shown.map(o=>`<text class="chart-label" text-anchor="middle" x="${pts[o.i][0]}" y="${H-10}">${labels[o.i]}</text>`).join('')}</svg>`;
+}
+
+function polar(cx,cy,r,a){const rad=(a-90)*Math.PI/180;return[cx+r*Math.cos(rad),cy+r*Math.sin(rad)]}
+function donutPath(cx,cy,r0,r1,a0,a1){const p1=polar(cx,cy,r1,a0),p2=polar(cx,cy,r1,a1),p3=polar(cx,cy,r0,a1),p4=polar(cx,cy,r0,a0),large=(a1-a0)>180?1:0;return`M ${p1[0].toFixed(2)} ${p1[1].toFixed(2)} A ${r1} ${r1} 0 ${large} 1 ${p2[0].toFixed(2)} ${p2[1].toFixed(2)} L ${p3[0].toFixed(2)} ${p3[1].toFixed(2)} A ${r0} ${r0} 0 ${large} 0 ${p4[0].toFixed(2)} ${p4[1].toFixed(2)} Z`}
+function donutChart(rows,label){
+  const colors=['#1b6a3b','#78ad32','#b98a2b','#3e6fa8','#7c5b8f','#d06b3c','#4f8c7a','#9b6d3d'];
+  const total=rows.reduce((a,r)=>a+Number(r.mails??r.items??0),0);if(!total)return'<div class="empty">No data available.</div>';
+  let angle=0,parts='';
+  rows.forEach((r,i)=>{const value=Number(r.mails??r.items??0),deg=value/total*360;const end=angle+deg;parts+=`<path d="${donutPath(120,120,63,100,angle,end-.8)}" fill="${colors[i%colors.length]}" stroke="#fffdf8" stroke-width="2"><title>${esc(r.name)} · ${value.toLocaleString()} · ${(value/total*100).toFixed(1)}%</title></path>`;angle=end});
+  const legend=rows.map((r,i)=>{const value=Number(r.mails??r.items??0),pct=value/total*100;return`<div class="legend-row"><span class="legend-dot" style="background:${colors[i%colors.length]}"></span><span class="legend-name">${esc(r.name)} <span class="legend-value">${value.toLocaleString()} items</span></span><span class="legend-pct">${pct.toFixed(1)}%</span></div>`}).join('');
+  return`<div class="contrib-layout"><div class="donut-panel"><svg class="donut-svg" viewBox="0 0 240 240" role="img" aria-label="${esc(label)} donut chart">${parts}<circle cx="120" cy="120" r="62" fill="var(--paper)"/><text x="120" y="116" text-anchor="middle" class="donut-center">${total.toLocaleString()}</text><text x="120" y="132" text-anchor="middle" class="donut-sub">${esc(label)}</text></svg></div><div class="donut-legend">${legend}</div></div>`;
+}
+function svgBarChart(rows,maxLabel){
+  if(!rows.length)return'<div class="empty">No work activity documented for this month.</div>';
+  return rows.map(r=>`<div class="work-bar-row"><div class="bar-name" title="${esc(r.name)}">${esc(r.name)}</div><div class="bar"><span style="width:${Math.max(0,Math.min(100,r.pct))}%"></span></div><div class="bar-val">${r.pct.toFixed(0)}%</div></div><div class="desc" style="margin:-7px 0 3px 0">${r.items} work item${r.items===1?'':'s'} · ${r.share.toFixed(1)}% of work mix</div>`).join('');
+}
+function workDayMap(m){const rs=monthRecords(m),map={};rs.forEach(r=>{const n=(r.extra||[]).length;map[r.date]=(map[r.date]||0)+n});return map}
+function svgWorkTrend(values,labels){
+  const W=800,H=285,p={l:38,r:14,t:15,b:35},iw=W-p.l-p.r,ih=H-p.t-p.b,max=Math.max(1,...values),gap=values.length>20?2:4,bw=Math.max(3,(iw-gap*(values.length-1))/Math.max(1,values.length));let bars='';
+  values.forEach((v,i)=>{const h=(v/max)*ih,x=p.l+i*(bw+gap),y=p.t+ih-h;bars+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${Math.max(1,bw).toFixed(1)}" height="${Math.max(0,h).toFixed(1)}" rx="2" fill="${i%2?'#78ad32':'#1b6a3b'}"><title>${labels[i]} · ${v} work items</title></rect>`});let grid='';for(let i=0;i<5;i++){const y=p.t+ih*i/4,val=Math.round(max*(1-i/4));grid+=`<line class="chart-grid" x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}"/><text class="chart-label" x="4" y="${y+3}">${val}</text>`}const shown=labels.map((x,i)=>({i})).filter(o=>labels.length<=10||o.i===0||o.i===labels.length-1||o.i%Math.ceil(labels.length/6)===0);return`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Daily work activity bar chart">${grid}${bars}${shown.map(o=>`<text class="chart-label" text-anchor="middle" x="${p.l+o.i*(bw+gap)+bw/2}" y="${H-10}">${labels[o.i]}</text>`).join('')}</svg>`;
+}
+function render(){
+  $('dashMonth').value=state.month;$('mailMonth').value=state.month;$('workMonth').value=state.month;$('insightMonth').value=state.month;$('eodMonth').value=state.month;
+  renderDashboard();renderPeople();renderMail();renderWork();renderEod();renderInsights();updateUI();
+}
+function renderDashboard(){
+  const m=state.month,ms=mailStats(m),rs=monthRecords(m),days=monthDays(m),dm=teamDayMap(m),vals=days.map(d=>dm[d]||0);
+  $('heroMail').textContent=ms.total.toLocaleString();$('heroContrib').textContent=ms.rows.length;$('heroEod').textContent=rs.length;$('heroLeader').textContent=ms.rows[0]?.name||'—';
+  $('kpiMails').textContent=ms.total.toLocaleString();$('kpiLeader').textContent=ms.rows[0]?.name||'—';$('kpiLeaderSub').textContent=ms.rows[0]?`${ms.rows[0].mails.toLocaleString()} mails · ${ms.rows[0].pct.toFixed(1)}% share`:'No mail data';
+  const best=Object.entries(dm).sort((a,b)=>b[1]-a[1])[0];$('kpiBest').textContent=best?best[1].toLocaleString():'0';$('kpiBestSub').textContent=best?fmtDate(best[0]):'—';
+  const coverage=activePeople().length?Math.round(new Set(rs.map(r=>r.name)).size/activePeople().length*100):0;$('kpiCoverage').textContent=coverage+'%';
+  $('teamTrend').innerHTML=svgLine(vals,days.map(d=>new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'2-digit',month:'short'})));
+  $('contributionBars').innerHTML=ms.rows.length?donutChart(ms.rows,'new-mail contribution'): '<div class="empty">No new-mail data for this month.</div>';
+  $('dashLeaderboard').innerHTML=ms.rows.slice(0,5).map(r=>`<div class="list-item"><div class="person"><span class="rank">${r.rank}</span><span>${esc(r.name)}</span></div><b>${r.mails.toLocaleString()} · ${r.pct.toFixed(1)}%</b></div>`).join('')||'<div class="empty">No mail contributors yet.</div>';
+  const wr=roleStats(m).filter(x=>x.items>0).slice(0,5);const max=Math.max(1,...wr.map(x=>x.items));$('dashWork').innerHTML=wr.length?wr.map(x=>`<div class="bar-row"><div class="bar-name">${esc(x.name)}</div><div class="bar"><span style="width:${x.items/max*100}%"></span></div><div class="bar-val">${x.items} items</div></div>`).join('')+'<button class="btn" style="margin-top:7px" onclick="showView(\'work\')">View full work analytics →</button>':'<div class="empty">No additional work documented yet.</div>';
+  const recent=[...rs].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);$('recentEod').innerHTML=recent.length?recent.map(r=>`<div class="eod-item" onclick="openEod('${attr(r.id)}')"><div class="eod-top"><span class="eod-date">${fmtDate(r.date)}</span><span class="eod-name">${esc(r.name)}</span></div><div class="eod-snippet">${esc(r.text.replace(/\s+/g,' ').slice(0,210))}</div></div>`).join(''):'<div class="empty">No EOD reports yet.</div>';
+}
+function renderPeople(){
+  const q=($('teamSearch').value||'').toLowerCase(),ps=activePeople().filter(p=>!q||p.name.toLowerCase().includes(q)||String(p.role||'').toLowerCase().includes(q));
+  $('peopleGrid').innerHTML=ps.length?ps.map(p=>profileCard(p)).join(''):'<div class="empty" style="grid-column:1/-1">No team profiles yet. Admin can add members.</div>';
+}
+function profileCard(p){
+  const s=profileStats(p.name,state.month),ms=mailStats(state.month).rows.find(x=>x.name.toLowerCase()===p.name.toLowerCase()),hasMail=s.mails>0;
+  return `<div class="card profile-card" onclick="openProfile('${attr(p.name)}')"><div class="profile-top"><div class="avatar">${p.photo?`<img src="${attr(p.photo)}" alt="">`:initials(p.name)}</div><div><h3>${esc(p.name)}</h3><div class="role">${esc(p.role||'Team Member')}</div></div></div><div class="profile-stats"><div class="pstat"><b>${hasMail?ms.mails:s.units}</b><span>${hasMail?'New mails':'Work items'}</span></div><div class="pstat"><b>${hasMail?ms.pct.toFixed(0)+'%':s.rolePct.toFixed(0)+'%'}</b><span>${hasMail?'Mail share':'Work activity'}</span></div><div class="pstat"><b>${s.activeDays}</b><span>EOD days</span></div></div></div>`;
+}
+function renderMail(){
+  const m=state.month,ms=mailStats(m),rs=monthRecords(m),days=Object.values(teamDayMap(m));$('mailTotal').textContent=ms.total.toLocaleString();$('mailLeader').textContent=ms.rows[0]?.name||'—';
+  const activeDays=days.filter(x=>x>0).length;$('mailAvg').textContent=activeDays?(ms.total/activeDays).toFixed(1):'0';$('mailBest').textContent=Math.max(0,...days).toLocaleString();
+  $('mailTable').innerHTML=ms.rows.length?`<div class="table-wrap"><table class="table"><thead><tr><th>Rank</th><th>Contributor</th><th>New Mails</th><th>Team Share</th><th>Active Days</th><th>Avg / Active Day</th><th>Best Day</th></tr></thead><tbody>${ms.rows.map(r=>{const pr=profileStats(r.name,m);return `<tr><td><span class="rank">${r.rank}</span></td><td><div class="person"><div class="avatar">${personByName(r.name)?.photo?`<img src="${attr(personByName(r.name).photo)}">`:initials(r.name)}</div><div><b>${esc(r.name)}</b><div class="desc">Mail contributor</div></div></div></td><td><b>${r.mails.toLocaleString()}</b></td><td>${r.pct.toFixed(1)}%</td><td>${pr.rs.filter(x=>x.newMails>0).length}</td><td>${(r.mails/Math.max(1,pr.rs.filter(x=>x.newMails>0).length)).toFixed(1)}</td><td>${pr.best}</td></tr>`}).join('')}</tbody></table></div>`:'<div class="empty">No new-mail output recorded for this month.</div>';
+}
+function renderWork(){
+  const m=state.month,rows=roleStats(m),active=rows.filter(r=>r.items>0),total=active.reduce((a,r)=>a+r.items,0),max=Math.max(0,...rows.map(r=>r.items));
+  active.forEach(r=>{r.share=total?r.items/total*100:0;r.pct=max?r.items/max*100:0});
+  $('workTotal').textContent=total.toLocaleString();$('workContributors').textContent=active.length;$('workLeader').textContent=active[0]?.name||'—';$('workLeaderSub').textContent=active[0]?`${active[0].items} items · ${active[0].pct.toFixed(0)}% level`:'No data';$('workAvg').textContent=active.length?(total/active.length).toFixed(1):'0';
+  $('workContributionMix').innerHTML=active.length?donutChart(active,'work items'):'<div class="empty">No non-mail work documented for this month.</div>';
+  $('workPerformanceBars').innerHTML=active.length?svgBarChart(active.slice(0,10),max):'<div class="empty">No non-mail work documented for this month.</div>';
+  const days=monthDays(m),dm=workDayMap(m),vals=days.map(d=>dm[d]||0);$('workTrend').innerHTML=active.length?svgWorkTrend(vals,days.map(d=>new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'2-digit',month:'short'}))):'<div class="empty">No daily work activity for this month.</div>';
+  $('workTable').innerHTML=rows.length?`<div class="table-wrap"><table class="table"><thead><tr><th>Employee</th><th>Role</th><th>Work Items</th><th>Work Days</th><th>EOD Days</th><th>Activity %</th><th>Share</th></tr></thead><tbody>${rows.map(r=>`<tr><td><div class="person"><div class="avatar">${personByName(r.name)?.photo?`<img src="${attr(personByName(r.name).photo)}">`:initials(r.name)}</div><b>${esc(r.name)}</b></div></td><td>${esc(r.role)}</td><td><b>${r.items}</b></td><td>${r.days}</td><td>${r.eods}</td><td><b>${r.items?r.pct.toFixed(0)+'%':'—'}</b><div class="progress" style="margin-top:5px"><span style="width:${r.pct}%"></span></div></td><td>${r.items&&total?(r.items/total*100).toFixed(1)+'%':'—'}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">No team members yet.</div>';
+}
+function renderEod(){
+  const q=($('eodSearch').value||'').toLowerCase(),rs=monthRecords(state.month).filter(r=>!q||r.text.toLowerCase().includes(q)||r.name.toLowerCase().includes(q)||r.date.includes(q)).sort((a,b)=>a.date.localeCompare(b.date)||a.name.localeCompare(b.name));
+  const grouped={};rs.forEach(r=>(grouped[r.date]??=[]).push(r));const dates=Object.keys(grouped);
+  $('eodCalendar').innerHTML=dates.length?dates.map(d=>{const day=grouped[d],mails=day.reduce((a,r)=>a+r.newMails,0),extras=day.reduce((a,r)=>a+(r.extra||[]).length,0);return `<div class="day" onclick="openEod('${attr(day[0].id)}')"><div class="day-head"><span class="day-date">${fmtDate(d)}</span><span class="day-count">${day.length} EOD</span></div><div class="day-name">${esc(day.map(x=>x.name).join(', '))}</div><div class="day-mail">${mails}<span> new mails</span></div><div class="day-extra">${extras} documented other-work item(s)</div><div class="heat"><span style="width:${Math.min(100,mails?Math.max(8,mails/Math.max(1,...Object.values(grouped).map(ds=>ds.reduce((a,r)=>a+r.newMails,0)))*100):4)}%"></span></div></div>`}).join(''):'<div class="empty" style="grid-column:1/-1">No EOD reports match this month.</div>';
+}
+function renderInsights(){
+  const m=state.month,ms=mailStats(m),rs=monthRecords(m),wr=roleStats(m),active=activePeople();
+  const top=ms.rows[0],totalWork=wr.reduce((a,r)=>a+r.items,0),daysWithEod=new Set(rs.map(r=>r.date)).size;
+  const allMail=state.records.reduce((a,r)=>a+Number(r.newMails||0),0),allWork=state.records.reduce((a,r)=>a+(r.extra||[]).length,0),allEod=state.records.length;
+  $('insightsContent').innerHTML=`<div class="grid4"><div class="card metric"><div class="label">Month</div><div class="value" style="font-size:19px">${monthLabel(m)}</div></div><div class="card metric"><div class="label">All-time new mails</div><div class="value">${allMail.toLocaleString()}</div><div class="sub">${allEod} EOD reports stored</div></div><div class="card metric"><div class="label">All-time other work</div><div class="value">${allWork}</div><div class="sub">Documented non-mail work items</div></div><div class="card metric"><div class="label">New-mail share leader</div><div class="value">${top?esc(top.name):'—'}</div><div class="sub">${top?top.pct.toFixed(1)+'% of team output':''}</div></div><div class="card metric"><div class="label">Documented work items</div><div class="value">${totalWork}</div><div class="sub">Across all active profiles</div></div><div class="card metric"><div class="label">EOD dates covered</div><div class="value">${daysWithEod}</div><div class="sub">${rs.length} total reports</div></div></div>
+  <div class="section two-col"><div class="card"><h2>Consistency view</h2><div class="desc">Profiles with EOD activity in ${monthLabel(m)}.</div>${active.map(p=>{const s=profileStats(p.name,m);const pct=active.length?Math.min(100,s.activeDays/Math.max(1,daysInMonth(m))*100):0;return `<div class="bar-row"><div class="bar-name">${esc(p.name)}</div><div class="bar"><span style="width:${pct}%"></span></div><div class="bar-val">${s.activeDays} days</div></div>`}).join('')}</div>
+  <div class="card"><h2>Management notes</h2><div class="list"><div class="list-item"><span>Mail leaderboard</span><b>${ms.rows.length} contributor(s)</b></div><div class="list-item"><span>Top mail output</span><b>${top?top.mails:0}</b></div><div class="list-item"><span>Follow-up mail</span><b>${rs.reduce((a,r)=>a+r.followupMails,0)}</b></div><div class="list-item"><span>Other work items</span><b>${totalWork}</b></div></div><div class="notice" style="margin-top:12px">Interpretation rule: new mails are the only competitive mail KPI. Follow-ups/reminders and other work remain visible without distorting the mail ranking.</div></div></div>`;
+}
+function daysInMonth(m){return new Date(Number(m.slice(0,4)),Number(m.slice(5,7)),0).getDate()}
+
+function exportMonth(){
+  const m=state.month,rs=monthRecords(m),rows=[['Date','Name','New Mails','Follow-up/Reminder','Other Work Items','EOD Message']];
+  rs.sort((a,b)=>a.date.localeCompare(b.date)||a.name.localeCompare(b.name)).forEach(r=>rows.push([r.date,r.name,r.newMails,r.followupMails,(r.extra||[]).length,r.text]));
+  const csv=rows.map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download=`NELVI_EOD_${m}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function profileMonthHistory(name){
+  const months=[...new Set(state.records.filter(r=>r.name.toLowerCase()===name.toLowerCase()).map(r=>r.date.slice(0,7)))].sort().reverse();
+  return months.map(m=>{
+    const s=profileStats(name,m),ms=mailStats(m).rows.find(x=>x.name.toLowerCase()===name.toLowerCase());
+    return {m,mails:s.mails,follow:s.follow,units:s.units,eods:s.activeDays,mailPct:ms?.pct||0,workPct:s.rolePct};
+  });
+}
+function personCalendar(name,m){
+  const rs=monthRecords(m).filter(r=>r.name.toLowerCase()===name.toLowerCase()),map={};rs.forEach(r=>map[r.date]=r);
+  return monthDays(m).map(d=>{
+    const r=map[d],n=r?Number(r.newMails||0):0,e=r?(r.extra||[]).length:0;
+    return `<div class="day" style="min-height:72px;padding:8px;${r?'cursor:pointer':''}" ${r?`onclick="openEod('${attr(r.id)}')"`:''}><div class="day-head"><span class="day-date">${new Date(d+'T00:00:00').getDate()}</span>${r?'<span class="tag">EOD</span>':''}</div><div class="day-mail" style="font-size:15px;margin-top:6px">${n}<span> mail</span></div><div class="day-extra">${e} other work</div></div>`;
+  }).join('');
+}
+function openProfile(name){
+  const p=personByName(name)||{name,role:'Team Member',photo:''},s=profileStats(name,state.month),ms=mailStats(state.month).rows.find(x=>x.name.toLowerCase()===name.toLowerCase()),hasMail=s.mails>0;
+  const unlocked=state.admin||(state.user&&state.user.name.toLowerCase()===name.toLowerCase());
+  const history=profileMonthHistory(name);
+  $('profileTitle').textContent=name;
+  $('profileContent').innerHTML=`<div class="profile-hero"><div class="avatar">${p.photo?`<img src="${attr(p.photo)}" alt="">`:initials(name)}</div><div><h3>${esc(name)}</h3><p>${esc(p.role||'Team Member')}</p><div class="chip-row"><span class="tag">${monthLabel(state.month)}</span>${hasMail?'<span class="tag gold">Mail contributor</span>':'<span class="tag blue">Role-work profile</span>'}</div></div><div class="actions">${unlocked?`<button class="btn primary" onclick="openEntry('${attr(name)}')">＋ Add EOD</button>`:`<button class="btn gold" onclick="requestPin('${attr(name)}')">🔐 Unlock my EOD</button>`}<button class="btn photo-upload-btn" onclick="chooseProfilePhoto('${attr(name)}')">📷 ${p.photo?'Change Photo':'Upload Photo'}</button>${state.admin?`<button class="btn" onclick="adminEditPerson('${attr(name)}')">Edit profile</button>`:''}</div></div>
+  <div class="profile-grid"><div class="card"><h2>${hasMail?'✉ Mail Performance':'🧩 Role Work Performance'}</h2><div class="desc">${hasMail?'New-mail output and team share for the selected month.':'Documented non-mail work activity for the selected month.'}</div><div class="donut-wrap"><div class="donut" style="background:conic-gradient(var(--g2) ${(hasMail?(ms?.pct||0):s.rolePct)*3.6}deg,#e8eee5 0deg)"></div><div class="donut-label">${(hasMail?(ms?.pct||0):s.rolePct).toFixed(0)}%</div></div><div class="list"><div class="list-item"><span>${hasMail?'New mails':'Work items'}</span><b>${hasMail?s.mails:s.units}</b></div><div class="list-item"><span>EOD days</span><b>${s.activeDays}</b></div><div class="list-item"><span>${hasMail?'Best new-mail day':'Work days'}</span><b>${hasMail?s.best:s.workDays}</b></div><div class="list-item"><span>Follow-up / reminder</span><b>${s.follow}</b></div></div></div><div class="card"><h2>Daily Activity</h2><div class="desc">${monthLabel(state.month)} · tap an EOD day to read the original message</div><div class="calendar" style="margin-top:12px">${personCalendar(name,state.month)}</div></div></div>
+  <div class="section card"><div class="section-head"><div><h2>Month-by-Month History</h2><div class="desc">All recorded months for this employee.</div></div></div>${history.length?`<div class="table-wrap"><table class="table"><thead><tr><th>Month</th><th>New Mails</th><th>Mail Share</th><th>Other Work</th><th>EOD Days</th></tr></thead><tbody>${history.map(h=>`<tr><td><b>${monthLabel(h.m)}</b></td><td>${h.mails}</td><td>${h.mailPct?h.mailPct.toFixed(1)+'%':'—'}</td><td>${h.units}</td><td>${h.eods}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">No recorded months yet.</div>'}</div>
+  <div class="section"><div class="section-head"><div><h2>EOD History · ${monthLabel(state.month)}</h2><div class="desc">Original messages are retained exactly as submitted.</div></div></div><div class="eod-list">${s.rs.length?[...s.rs].sort((a,b)=>b.date.localeCompare(a.date)).map(r=>`<div class="eod-item" onclick="openEod('${attr(r.id)}')"><div class="eod-top"><span class="eod-date">${fmtDate(r.date)}</span><span class="chip-row" style="margin:0"><span class="tag gold">${r.newMails} new mail</span>${r.followupMails?`<span class="tag gray">${r.followupMails} follow-up</span>`:''}<span class="tag">${(r.extra||[]).length} other work</span></span></div><div class="eod-snippet">${esc(r.text.replace(/\s+/g,' ').slice(0,230))}</div></div>`).join(''):'<div class="empty">No EOD history for this month.</div>'}</div></div>`;
+  $('profileModal').classList.add('show');
+}
+function activityBars(rs){
+  const max=Math.max(1,...rs.map(r=>(r.extra||[]).length));return rs.length?rs.sort((a,b)=>a.date.localeCompare(b.date)).slice(-12).map(r=>`<div class="bar-row" style="grid-template-columns:60px 1fr 38px"><div class="bar-name">${fmtDate(r.date).slice(0,6)}</div><div class="bar"><span style="width:${(r.extra||[]).length/max*100}%"></span></div><div class="bar-val">${(r.extra||[]).length}</div></div>`).join(''):'<div class="empty">No activity.</div>';
+}
+function openEod(id){
+  const selected=state.records.find(x=>x.id===id);if(!selected)return;
+  const date=selected.date,day=state.records.filter(x=>x.date===date).sort((a,b)=>a.name.localeCompare(b.name));
+  $('eodTitle').textContent=`EOD · ${fmtDate(date)}`;
+  $('eodContent').innerHTML=day.map(r=>{
+    const can=state.admin||(state.user&&state.user.name.toLowerCase()===r.name.toLowerCase());
+    return `<div class="card" style="margin-top:10px"><div class="eod-top"><div><b>${esc(r.name)}</b><div class="desc">${fmtDate(r.date)}</div></div><div class="chip-row" style="margin:0"><span class="tag gold">New mails: ${r.newMails}</span><span class="tag gray">Follow-up: ${r.followupMails} · excluded</span><span class="tag">${(r.extra||[]).length} other work</span></div></div><div class="eod-full">${esc(r.text)}</div>${can?`<div class="modal-actions"><button class="btn danger" onclick="askDelete('${attr(r.id)}')">Delete this EOD</button></div>`:''}</div>`;
+  }).join('');
+  $('eodModal').classList.add('show');
+}
+function openEntry(name){
+  if(!state.admin&&(!state.user||state.user.name.toLowerCase()!==String(name).toLowerCase()))return alert('Unlock this profile with its PIN first.');
+  $('entryDate').value=new Date().toISOString().slice(0,10);$('entryName').value=name;$('entryText').value='';$('entryPreview').textContent='Paste the original EOD message. The system will detect new-mail output, follow-up/reminder and other work.';$('saveEntry').dataset.name=name;$('entryModal').classList.add('show');setTimeout(()=>$('entryText').focus(),30);
+}
+$('entryText').addEventListener('input',()=>{const r=parseEOD($('entryText').value,$('entryDate').value);$('entryPreview').innerHTML=`<b>${esc(r.name||$('entryName').value)}</b> · ${fmtDate(r.date)}<div class="chip-row"><span class="tag gold">New mails: ${r.newMails}</span><span class="tag gray">Follow-up/reminder: ${r.followupMails} (excluded)</span><span class="tag">${r.extra.length} other work</span></div>`});
+$('saveEntry').onclick=async()=>{
+  const raw=$('entryText').value.trim(),name=$('saveEntry').dataset.name||'';if(!raw)return alert('Paste the EOD message first.');
+  const r=parseEOD(raw,$('entryDate').value);r.name=name;if(!r.name)return alert('Profile name missing.');
+  if(!state.admin&&(!state.user||state.user.name.toLowerCase()!==name.toLowerCase()))return alert('You can only save EOD for your own unlocked profile.');
+  if(!state.admin&&state.records.some(x=>x.name.toLowerCase()===name.toLowerCase()&&x.date===r.date))return alert('An EOD already exists for you on this date.');
+  const btn=$('saveEntry');btn.classList.add('busy');btn.innerHTML='<span class="spinner"></span>Saving…';
+  try{const res=await api('upsertEod',{record:r,actor:state.admin?'admin':state.user.name,actorPin:state.admin?'':state.user.pin,adminKey:state.admin?sessionStorage.getItem('nelviAdminKey')||'':''});state.records=state.records.filter(x=>!(x.name.toLowerCase()===r.name.toLowerCase()&&x.date===r.date));state.records.push(res.record||r);cacheState();closeModal('entryModal');render();alert('EOD saved successfully.')}catch(e){alert('Save failed: '+e.message)}finally{btn.classList.remove('busy');btn.textContent='Save EOD'}
+};
+function askDelete(id){
+  const r=state.records.find(x=>x.id===id);if(!r)return;const can=state.admin||(state.user&&state.user.name.toLowerCase()===r.name.toLowerCase());if(!can)return alert('You can delete only your own EOD.');
+  $('confirmText').textContent=`${r.name} · ${fmtDate(r.date)}. This will remove the shared EOD record.`;$('confirmBtn').onclick=()=>deleteEod(id);$('confirmModal').classList.add('show');
+}
+async function deleteEod(id){
+  const r=state.records.find(x=>x.id===id);if(!r)return;const btn=$('confirmBtn');btn.classList.add('busy');btn.innerHTML='<span class="spinner"></span>Deleting…';
+  try{await api('deleteEod',{id,actor:state.admin?'admin':state.user.name,actorPin:state.admin?'':state.user.pin,adminKey:state.admin?sessionStorage.getItem('nelviAdminKey')||'':''});state.records=state.records.filter(x=>x.id!==id);cacheState();closeModal('confirmModal');closeModal('eodModal');closeModal('profileModal');render();alert('EOD deleted.')}catch(e){alert('Delete failed: '+e.message)}finally{btn.classList.remove('busy');btn.textContent='Yes, Delete'}
+}
+
+function requestPin(name){pendingProfile=name;$('memberPin').value='';$('pinMsg').textContent='';$('pinModal').classList.add('show');setTimeout(()=>$('memberPin').focus(),30)}
+$('verifyPin').onclick=async()=>{
+  if(!pendingProfile)return;const pin=$('memberPin').value;if(!pin)return $('pinMsg').textContent='Enter your PIN.';
+  const btn=$('verifyPin');btn.classList.add('busy');btn.innerHTML='<span class="spinner"></span>Verifying…';
+  try{const res=await api('authMember',{name:pendingProfile,pin});state.user={name:res.person.name,role:res.person.role,photo:res.person.photo,pin};closeModal('pinModal');updateUI();openProfile(pendingProfile);}catch(e){$('pinMsg').textContent='Incorrect PIN. Please try again.'}finally{btn.classList.remove('busy');btn.textContent='Verify PIN'}
+};
+
+$('adminBtn').onclick=()=>{$('adminKeyInput').value='';$('adminMsg').textContent='';$('adminModal').classList.add('show')};
+$('adminLoginBtn').onclick=async()=>{
+  const key=$('adminKeyInput').value;if(!key)return $('adminMsg').textContent='Enter Admin Key.';
+  const btn=$('adminLoginBtn');btn.classList.add('busy');btn.innerHTML='<span class="spinner"></span>Verifying…';
+  try{await api('authAdmin',{adminKey:key});sessionStorage.setItem('nelviAdminKey',key);state.admin=true;state.user=null;closeModal('adminModal');updateUI();render();}catch(e){$('adminMsg').textContent='Invalid Admin Key.'}finally{btn.classList.remove('busy');btn.textContent='Unlock Admin'}
+};
+$('adminAddPerson').onclick=()=>{if(!state.admin)return;$('personModalTitle').textContent='Add Team Member';$('personName').value='';$('personRole').value='';$('personPhotoFile').value='';$('personPin').value='';$('personPhotoHint').textContent='Choose a photo from this device. It will be resized/compressed and saved to the shared profile.';$('savePerson').dataset.editing='';$('deletePersonBtn').classList.add('hidden');$('personModal').classList.add('show')};
+function adminEditPerson(name){if(!state.admin)return;const p=personByName(name);if(!p)return;$('personModalTitle').textContent='Edit Team Member';$('personName').value=p.name;$('personRole').value=p.role||'';$('personPhotoFile').value='';$('personPhotoHint').textContent=p.photo?'A profile photo is already set. Choose a new file only if you want to replace it.':'Choose a photo from this device. It will be resized/compressed and saved to the shared profile.';$('personPin').value='';$('savePerson').dataset.editing=p.name;$('deletePersonBtn').classList.remove('hidden');$('personModal').classList.add('show')}
+function askDeletePerson(name){if(!state.admin)return;const p=personByName(name);if(!p)return;$('confirmText').textContent=`Delete ${p.name} from Team Profiles? Existing EOD history will be preserved in the archive.`;$('confirmBtn').onclick=()=>deletePerson(name);$('confirmModal').classList.add('show')}
+async function deletePerson(name){if(!state.admin)return;const btn=$('confirmBtn');btn.classList.add('busy');btn.innerHTML='<span class="spinner"></span>Deleting…';try{const res=await api('deletePerson',{name,adminKey:sessionStorage.getItem('nelviAdminKey')||''});state.people=res.people||state.people.filter(x=>x.name.toLowerCase()!==name.toLowerCase());cacheState();closeModal('confirmModal');closeModal('personModal');closeModal('profileModal');render();alert('Team member profile deleted. Existing EOD history was preserved.')}catch(e){alert('Delete member failed: '+e.message)}finally{btn.classList.remove('busy');btn.textContent='Yes, Delete'}}
+$('deletePersonBtn').onclick=()=>{const name=$('savePerson').dataset.editing||$('personName').value.trim();if(name)askDeletePerson(name)};
+async function fileToProfileDataUrl(file){
+  if(!file)return '';
+  if(!file.type.startsWith('image/'))throw new Error('Please choose an image file.');
+  return await new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>{
+      const img=new Image();
+      img.onload=()=>{
+        const max=640,scale=Math.min(1,max/Math.max(img.width,img.height));
+        const c=document.createElement('canvas');c.width=Math.max(1,Math.round(img.width*scale));c.height=Math.max(1,Math.round(img.height*scale));
+        const ctx=c.getContext('2d');ctx.drawImage(img,0,0,c.width,c.height);
+        let q=.78,data=c.toDataURL('image/jpeg',q);
+        while(data.length>47000 && q>.38){q-=.08;data=c.toDataURL('image/jpeg',q);}
+        if(data.length>49000)reject(new Error('Photo is too large. Please choose a smaller image.'));
+        else resolve(data);
+      };
+      img.onerror=()=>reject(new Error('Could not read the selected image.'));
+      img.src=reader.result;
+    };
+    reader.onerror=()=>reject(new Error('Could not read the selected file.'));
+    reader.readAsDataURL(file);
+  });
+}
+async function chooseProfilePhoto(name){
+  const unlocked=state.admin||(state.user&&state.user.name.toLowerCase()===name.toLowerCase());
+  if(!unlocked)return requestPin(name);
+  const input=$('profilePhotoFile');input.value='';
+  input.onchange=async()=>{
+    const file=input.files&&input.files[0];if(!file)return;
+    try{
+      const photo=await fileToProfileDataUrl(file);
+      if(state.admin){
+        await api('updatePhoto',{name,photo,adminKey:sessionStorage.getItem('nelviAdminKey')||''});
+      }else{
+        await api('updatePhoto',{name,photo,pin:state.user.pin});
+      }
+      const p=personByName(name);if(p)p.photo=photo;
+      if(state.user&&state.user.name.toLowerCase()===name.toLowerCase())state.user.photo=photo;
+      cacheState();render();openProfile(name);alert('Profile photo updated successfully.');
+    }catch(e){const msg=String(e&&e.message||e);alert(msg==='Unknown action.'?'Photo upload is not enabled on the deployed Apps Script yet. Please deploy the latest Code.gs (photo-upload-v7), then refresh this page.':'Photo upload failed: '+msg)}
+  };
+  input.click();
+}
+$('savePerson').onclick=async()=>{
+  if(!state.admin)return;const old=$('savePerson').dataset.editing||'',name=$('personName').value.trim(),role=$('personRole').value.trim(),pin=$('personPin').value;
+  if(!name)return alert('Name is required.');if(!old&&!pin)return alert('Personal PIN is required for a new member.');
+  const btn=$('savePerson');btn.classList.add('busy');btn.innerHTML='<span class="spinner"></span>Saving…';
+  try{
+    const existing=personByName(old||name)||{};const f=$('personPhotoFile').files&&$('personPhotoFile').files[0];
+    const photo=f?await fileToProfileDataUrl(f):(existing.photo||'');
+    const p={id:existing.id||'p_'+Date.now(),name,role,photo,active:true};
+    if(pin)p.pin=pin;else if(existing.pin)p.pin=existing.pin;
+    await api('upsertPerson',{person:p,adminKey:sessionStorage.getItem('nelviAdminKey')||''});
+    await fetchAll();closeModal('personModal');
+  }catch(e){alert('Save member failed: '+e.message)}
+  finally{btn.classList.remove('busy');btn.textContent='Save Member'}
+};
+
+$('myProfileBtn').onclick=()=>{if(state.user)openProfile(state.user.name)};
+$('refreshBtn').onclick=()=>fetchAll();
+$('teamSearch').oninput=renderPeople;
+$('dashMonth').onchange=e=>{state.month=e.target.value;render()};
+$('mailMonth').onchange=e=>{state.month=e.target.value;renderMail();renderDashboard()};
+$('workMonth').onchange=e=>{state.month=e.target.value;renderWork()};
+$('insightMonth').onchange=e=>{state.month=e.target.value;renderInsights()};
+$('eodMonth').onchange=e=>{state.month=e.target.value;renderEod();renderDashboard()};
+$('eodSearch').oninput=renderEod;
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showView(b.dataset.view));
+function showView(id){state.view=id;document.querySelectorAll('.view').forEach(v=>v.classList.toggle('hidden',v.id!==id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));window.scrollTo({top:0,behavior:'smooth'});render()}
+function closeModal(id){$(id).classList.remove('show')}
+$('logoutBtn').onclick=()=>{state.user=null;state.admin=false;sessionStorage.removeItem('nelviAdminKey');$('app').classList.add('hidden');$('loginScreen').classList.remove('hidden');$('teamCode').value='';updateUI()};
+function updateUI(){$('userBadge').textContent=state.admin?'✍️ Admin Mode':state.user?`👤 ${state.user.name}`:'View Mode';$('myProfileBtn').classList.toggle('hidden',!state.user);$('adminBtn').textContent=state.admin?'🔓 Admin':'🔐 Admin';$('adminAddPerson').classList.toggle('hidden',!state.admin);$('syncNote').textContent=$('syncNote').textContent||'Shared database'}
+let loginInFlight=false;
+$('loginBtn').onclick=async()=>{
+  if(loginInFlight)return;
+  const code=$('teamCode').value.trim();$('loginMsg').textContent='';if(!code)return $('loginMsg').textContent='Enter the team access code.';
+  loginInFlight=true;
+  const btn=$('loginBtn');btn.classList.add('busy');btn.innerHTML='<span class="spinner"></span>Verifying & opening…';
+  try{
+    const res=await api('authTeam',{teamCode:code},{timeout:15000});
+    state.teamCode=code;state.records=res.records||[];state.people=res.people||[];cacheState();
+    $('loginScreen').classList.add('hidden');$('app').classList.remove('hidden');updateUI();render();
+    if(syncTimer)clearInterval(syncTimer);syncTimer=setInterval(fetchAll,60000);
+  }catch(e){$('loginMsg').textContent=e.message.includes('Invalid')?'Invalid team access code.':e.message;}
+  finally{loginInFlight=false;btn.classList.remove('busy');btn.textContent='Enter Portal →'}
+};
+$('teamCode').addEventListener('keydown',e=>{if(e.key==='Enter')$('loginBtn').click()});
+window.addEventListener('load',()=>{
+  const adminKey=sessionStorage.getItem('nelviAdminKey');
+  if(adminKey&&apiReady())api('authAdmin',{adminKey}).then(()=>{state.admin=true;state.user=null;return fetchAll()}).catch(()=>sessionStorage.removeItem('nelviAdminKey'));
+});
+let zoom=Number(localStorage.getItem('nelviZoom')||100);function applyZoom(){document.documentElement.style.fontSize=(zoom/100)+'em';$('zoomReset').textContent=zoom+'%';localStorage.setItem('nelviZoom',zoom)}$('zoomOut').onclick=()=>{zoom=Math.max(80,zoom-10);applyZoom()};$('zoomIn').onclick=()=>{zoom=Math.min(130,zoom+10);applyZoom()};$('zoomReset').onclick=()=>{zoom=100;applyZoom()};applyZoom();
+
+// Password / access-code visibility toggles
+function initSecretToggles(){
+  document.querySelectorAll('input[type="password"]').forEach(input=>{
+    if(input.dataset.secretToggle) return;
+    input.dataset.secretToggle='1';
+    const wrap=document.createElement('div'); wrap.className='secret-wrap';
+    input.parentNode.insertBefore(wrap,input); wrap.appendChild(input);
+    const btn=document.createElement('button');
+    btn.type='button'; btn.className='secret-toggle';
+    btn.setAttribute('aria-label','Show password'); btn.setAttribute('title','Show');
+    btn.innerHTML='<span class="eye-on" aria-hidden="true">👁</span><span class="eye-off" aria-hidden="true">🙈</span>';
+    btn.addEventListener('click',()=>{
+      const visible=input.type==='text';
+      input.type=visible?'password':'text';
+      btn.classList.toggle('is-visible',!visible);
+      btn.setAttribute('aria-label',visible?'Show password':'Hide password');
+      btn.setAttribute('title',visible?'Show':'Hide');
+    });
+    input.setAttribute('autocomplete','off');
+    wrap.appendChild(btn);
+  });
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initSecretToggles); else initSecretToggles();
+</script>
+</body></html>
